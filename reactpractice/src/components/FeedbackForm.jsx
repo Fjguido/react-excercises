@@ -4,8 +4,21 @@ import Button from './shared/Button'
 
 function FeedbackForm() {
 const [text, setText] = useState('')
+const [btnDisabled, setbtnDisabled] = useState(true)
+const [message, setMessage] = useState('')
+
 
 const handleTextChange = (e) => {
+    if(text === '') {
+        setbtnDisabled(true)
+        setMessage(null)
+    } else if(text !== '' && text.trim().length <= 10) {
+        setbtnDisabled(true)
+        setMessage('Text must at least be 10 characters')
+    } else {
+        setMessage(null)
+        setbtnDisabled(false)
+    }
     setText(e.target.value)
 }
 // you can check if it works by going to components in inspect and clicking form then checking state
@@ -20,9 +33,11 @@ const handleTextChange = (e) => {
             type="text" 
             placeholder="Write a review"
             value={text}/>
-            <Button type="submit" version='secondary'>Send</Button>
+            <Button type="submit" version='secondary' isDisabled={btnDisabled}>Send</Button>
              {/* if didnt include version - button would be purple - check css files - check button.jsx - version is selected to primary*/}
         </div>
+        {message && <div className='message'>{message}</div>}
+          {/* added conditional - so displays when there is message */}
     </form>
     {/*need use state when using form */}
 
