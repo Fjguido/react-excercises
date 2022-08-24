@@ -19,9 +19,10 @@ function App() {
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
         setFeedback([newFeedback, ...feedback])
-      
-
+        {/* global feedback state so it can make changes to rating average, number of reviews and fully display on app 
+    - used spread operator to include all old feedback - if i only displayed newFeedback - it wil only display new feedback*/}
     }
+
     
     return (
         <> 
