@@ -3,7 +3,7 @@ import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
 
-function FeedbackForm() {
+function FeedbackForm({handleAdd}) {
 const [text, setText] = useState('')
 const [rating, setRating] = useState(10)
 const [btnDisabled, setbtnDisabled] = useState(true)
@@ -34,7 +34,8 @@ const handleSubmit = (e) => {
             text,
             rating
         }
-        console.log(newFeedback)
+        handleAdd(newFeedback)
+        setText('')
     }
 }
 // you can check if it works by going to components in inspect and clicking form then checking state
