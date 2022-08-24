@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Card from './shared/Card'
+import Button from './shared/Button'
 
 function FeedbackForm() {
 const [text, setText] = useState('')
@@ -19,7 +20,8 @@ const handleTextChange = (e) => {
             type="text" 
             placeholder="Write a review"
             value={text}/>
-            <button type="submit">Send</button>
+            <Button type="submit" version='secondary'>Send</Button>
+             {/* if didnt include version - button would be purple - check css files - check button.jsx - version is selected to primary*/}
         </div>
     </form>
     {/*need use state when using form */}
