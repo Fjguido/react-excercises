@@ -33,12 +33,15 @@ function App() {
         <Router> 
         <Header  />
         <div className='container'>
-     
+         
             <FeedbackForm handleAdd={addFeedback} />
             <FeedbackStats  feedback={feedback}/>
             <FeedbackList
             feedback={feedback} 
             handleDelete={deleteFeedback} />  
+
+        
+            
         <Routes>
             <Route exact path='/about' element={<AboutPage />} />
         </Routes>
