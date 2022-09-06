@@ -14,15 +14,15 @@ const handleTextChange = (e) => {
     if(text === '') {
         setbtnDisabled(true)
         setMessage(null)
-          {/* if text is blank - button is diabled and no message will appear */}
+        // if text is blank - button is diabled and no message will appear 
     } else if(text !== '' && text.trim().length <= 10) {
         setbtnDisabled(true)
         setMessage('Text must at least be 10 characters')
-          {/* if text is less then - it will display set message and button will still be disabled */}
+          // if text is less then - it will display set message and button will still be disabled 
     } else {
         setMessage(null)
         setbtnDisabled(false)
-          {/* if message is over 10 characters- buton wont be disabled and and setMessage will dissappear  */}
+          // if message is over 10 characters- buton wont be disabled and and setMessage will dissappear  
     }
     setText(e.target.value)
 }

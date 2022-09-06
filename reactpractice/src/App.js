@@ -10,6 +10,7 @@ import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
 import AboutPage from './pages/AboutPage'
 
+
 function App() {
 
     const [feedback, setFeedback] = useState((FeedbackData))
@@ -24,34 +25,37 @@ function App() {
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
         setFeedback([newFeedback, ...feedback])
-        {/* global feedback state so it can make changes to rating average, number of reviews and fully display on app 
-    - used spread operator to include all old feedback - if i only displayed newFeedback - it wil only display new feedback*/}
+
     }
 
     
     return (
-        <Router> 
-        <Header  />
-        <div className='container'>
+      
+              <Router>
+                <Header />
+                <div className='container'>
+                  <Routes>
+                    <Route
+                     exact path='/'
+                      element={
+                        <>
+                          <FeedbackForm handleAdd={addFeedback} />
+                          <FeedbackStats feedback={feedback} />
+                          <FeedbackList feedback={feedback} handleDelete={deleteFeedback}  />
+                        </>
+                      }
+                    />
+        
+                    <Route path='/about' element={<AboutPage />} />
+                  </Routes>
+        
+                
+                </div>
+              </Router>
+    
          
-            <FeedbackForm handleAdd={addFeedback} />
-            <FeedbackStats  feedback={feedback}/>
-            <FeedbackList
-            feedback={feedback} 
-            handleDelete={deleteFeedback} />  
-
-        
-            
-        <Routes>
-            <Route exact path='/about' element={<AboutPage />} />
-        </Routes>
-            {/* need to wrap route between routes for it to work */}
-        
-            
-        </div>
-        </Router>
-    )
-}
+          )
+        }
 
 
 
