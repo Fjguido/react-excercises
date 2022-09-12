@@ -28,6 +28,7 @@ const [feedbackEdit, setFeedbackEdit] = useState ({
     item: {},
     edit: false
 })
+// added boolean to know if it is edited or not
 
 //delete feedback
 const deleteFeedback = (id) => {
@@ -58,6 +59,7 @@ const editFeedback = (item) => {
         deleteFeedback,
         addFeedback,
         editFeedback,
+        feedbackEdit,
 
     }}>
 
