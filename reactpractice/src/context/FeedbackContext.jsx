@@ -12,8 +12,15 @@ const [feedback, setFeedback] = useState([
     }
 ])
 
+const deleteFeedback = (id) => {
+    if(window.confirm('Are you sure you want to delete?')) {
+        setFeedback(feedback.filter((item) => item.id !== id))
+    }
+}
+
     return <FeedbackContext.Provider value={{
         feedback,
+        deleteFeedback,
 
     }}>
 
@@ -26,3 +33,6 @@ const [feedback, setFeedback] = useState([
 // components that need access to the context 
 // any value you want to pass in, such as state/value - you pass it down to the value
 export default FeedbackContext
+
+// delete all functions in components when using it as context - ex handle delete
+// import useContext and import context components in components now using the context
