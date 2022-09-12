@@ -41,8 +41,8 @@ function App() {
                       element={
                         <>
                           <FeedbackForm handleAdd={addFeedback} />
-                          <FeedbackStats feedback={feedback} />
-                          <FeedbackList feedback={feedback} handleDelete={deleteFeedback}  />
+                          <FeedbackStats  />
+                          <FeedbackList handleDelete={deleteFeedback}  />
                         </>
                       }
                     />
@@ -59,6 +59,6 @@ function App() {
           )
         }
 
-
+// no longer need to add in props when using useContext hook
 
 export default App
