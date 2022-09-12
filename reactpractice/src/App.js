@@ -1,11 +1,9 @@
-import { v4 as uuidv4 } from 'uuid'
+
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 //Browser Router actually uses the HTML5 history API to keep our user interface in sync with the URL.
 //Hash router, on the other hand, uses the hash portion of the URL to keep it in sync.
-import { useState } from 'react'
 import Header from "./components/Header"
 import FeedbackList from "./components/FeedbackList"
-import FeedbackData from './data/FeedbackData'
 import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
 import AboutPage from './pages/AboutPage'
@@ -14,16 +12,6 @@ import AboutIconLink from './components/AboutIconLink'
 
 
 function App() {
-
-    const [feedback, setFeedback] = useState((FeedbackData))
-    
-    
-
-    const addFeedback = (newFeedback) => {
-        newFeedback.id = uuidv4()
-        setFeedback([newFeedback, ...feedback])
-
-    }
 
     return (
       <FeedbackProvider>
@@ -35,7 +23,7 @@ function App() {
                      exact path='/'
                       element={
                         <>
-                          <FeedbackForm handleAdd={addFeedback} />
+                          <FeedbackForm  />
                           <FeedbackStats  />
                           <FeedbackList   />
                         </>

@@ -1,4 +1,5 @@
 import {createContext, useState} from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const FeedbackContext = createContext()
 
@@ -18,9 +19,16 @@ const deleteFeedback = (id) => {
     }
 }
 
+const addFeedback = (newFeedback) => {
+    newFeedback.id = uuidv4()
+    setFeedback([newFeedback, ...feedback])
+
+}
+
     return <FeedbackContext.Provider value={{
         feedback,
         deleteFeedback,
+        addFeedback,
 
     }}>
 
@@ -34,5 +42,5 @@ const deleteFeedback = (id) => {
 // any value you want to pass in, such as state/value - you pass it down to the value
 export default FeedbackContext
 
-// delete all functions in components when using it as context - ex handle delete
+// delete all functions in components when using it as context - ex handleDelete/handleAdd
 // import useContext and import context components in components now using the context
