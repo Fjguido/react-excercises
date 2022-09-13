@@ -9,6 +9,8 @@ import AboutPage from "./pages/AboutPage";
 import { FeedbackProvider } from "./context/FeedbackContext";
 import AboutIconLink from "./components/AboutIconLink";
 
+// can use any port but 5000/7000
+
 function App() {
   return (
     <FeedbackProvider>
