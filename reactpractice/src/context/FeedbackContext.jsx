@@ -36,6 +36,21 @@ export const FeedbackProvider = ({ children }) => {
     }
   };
 
+  // Update feedback item
+  // return array because you want to mutate the item how you want 
+  // for each feedback youre calling in an item, is that item id equal
+  // to the id we want to update, if so we want to spread across the current
+  // item and spread across the updated item, else if it doesnt match id
+  // just return item.
+  const updateFeedback = (id, updateItem) => {
+    setFeedback(
+      feedback.map((item) =>
+        item.id === id ? { ...item, ...updateItem } : item
+      )
+    );
+  };
+ 
+
   // add feedback
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4();
@@ -58,6 +73,7 @@ export const FeedbackProvider = ({ children }) => {
         addFeedback,
         editFeedback,
         feedbackEdit,
+        updateFeedback,
       }}
     >
       {children}
