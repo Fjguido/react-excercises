@@ -1,49 +1,41 @@
-import {motion, AnimatePresence} from 'framer-motion'
-import { useContext } from 'react'
-import FeedbackItem from "./FeedbackItem"
-import FeedbackContext from '../context/FeedbackContext'
+import { motion, AnimatePresence } from "framer-motion";
+import { useContext } from "react";
+import FeedbackItem from "./FeedbackItem";
+import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackList() {
-  const {feedback} = useContext(FeedbackContext)
-// use value prop that is being returned in context component
+  const { feedback } = useContext(FeedbackContext);
+  // use value prop that is being returned in context component
 
-    if(!feedback || feedback.length === 0){
-        return <p>no feedback left</p>
-
-    }
-    return (
-        <div className='feedback-list'>
-            <AnimatePresence>
+  if (!feedback || feedback.length === 0) {
+    return <p>no feedback left</p>;
+  }
+  return (
+    <div className="feedback-list">
+      <AnimatePresence>
         {feedback.map((item) => (
-            <motion.div 
+          <motion.div
             key={item.id}
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            >
-
-            <FeedbackItem  
-            key={item.id} 
-            item={item} 
-            />
-            </motion.div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <FeedbackItem key={item.id} item={item} />
+          </motion.div>
         ))}
-        </AnimatePresence>
-        </div>
-      )
-//   return (
-//     <div className='feedback-list'>
-//     {feedback.map((item) => (
-//         <FeedbackItem  
-//         key={item.id} 
-//         item={item} 
-//         handleDelete={handleDelete}/>
-//     ))}
-//         </div>
-//   )
+      </AnimatePresence>
+    </div>
+  );
+  //   return (
+  //     <div className='feedback-list'>
+  //     {feedback.map((item) => (
+  //         <FeedbackItem
+  //         key={item.id}
+  //         item={item}
+  //         handleDelete={handleDelete}/>
+  //     ))}
+  //         </div>
+  //   )
 }
 
-
-
-
-export default FeedbackList
+export default FeedbackList;
