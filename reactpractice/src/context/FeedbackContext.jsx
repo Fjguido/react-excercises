@@ -5,9 +5,8 @@ const FeedbackContext = createContext();
 
 // now create a provider
 export const FeedbackProvider = ({ children }) => {
-
   //set true by default then when the output loads its false
-  const [isLoading, setIsloading] = useState(true)
+  const [isLoading, setIsloading] = useState(true);
   const [feedback, setFeedback] = useState([]);
 
   const [feedbackEdit, setFeedbackEdit] = useState({
@@ -18,16 +17,18 @@ export const FeedbackProvider = ({ children }) => {
 
   // useEffect takes in a function and an argument of dependencies (array of dependencies)
   useEffect(() => {
-    fetchFeedback()
-  }, [])
+    fetchFeedback();
+  }, []);
 
   // Fetch feedback
   const fetchFeedback = async () => {
-    const response = await fetch(`http://localhost:3001/feedback?_sort=id&_order=desc`)
-    const data = await response.json()
-    setFeedback(data)
-    setIsloading(false)
-  }
+    const response = await fetch(
+      `http://localhost:3001/feedback?_sort=id&_order=desc`
+    );
+    const data = await response.json();
+    setFeedback(data);
+    setIsloading(false);
+  };
 
   //delete feedback
   const deleteFeedback = (id) => {
@@ -37,7 +38,7 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   // Update feedback item
-  // return array because you want to mutate the item how you want 
+  // return array because you want to mutate the item how you want
   // for each feedback youre calling in an item, is that item id equal
   // to the id we want to update, if so we want to spread across the current
   // item and spread across the updated item, else if it doesnt match id
@@ -49,7 +50,6 @@ export const FeedbackProvider = ({ children }) => {
       )
     );
   };
- 
 
   // add feedback
   const addFeedback = (newFeedback) => {
