@@ -50,8 +50,7 @@ export const FeedbackProvider = ({ children }) => {
   //delete feedback - dont need response to await b/c youre just deleting
   const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      await fetch(`http://localhost:3001/feedback/${id}`, 
-      { method: "DELETE" });
+      await fetch(`http://localhost:3001/feedback/${id}`, { method: "DELETE" });
 
       setFeedback(feedback.filter((item) => item.id !== id));
     }
@@ -64,22 +63,19 @@ export const FeedbackProvider = ({ children }) => {
   // item and spread across the updated item, else if it doesnt match id
   // just return item.
   const updateFeedback = async (id, updateItem) => {
-    const response = await fetch(`http://localhost:3001/feedback/${id}`, 
-    {
-      method: 'PUT',
+    const response = await fetch(`http://localhost:3001/feedback/${id}`, {
+      method: "PUT",
       headers: {
-        'Content-Type' : 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateItem)
-    })
+      body: JSON.stringify(updateItem),
+    });
 
     const data = await response.json();
 
-// changed the last spread operator to match the data you want the response to be 'data'
+    // changed the last spread operator to match the data you want the response to be 'data'
     setFeedback(
-      feedback.map((item) =>
-        item.id === id ? { ...item, ...data } : item
-      )
+      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
   };
 

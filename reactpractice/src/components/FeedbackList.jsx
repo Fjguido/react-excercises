@@ -12,7 +12,9 @@ function FeedbackList() {
     return <p>no feedback left</p>;
   }
 
-  return isLoading ? (<Spinner />) : (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <div className="feedback-list">
       <AnimatePresence>
         {feedback.map((item) => (
