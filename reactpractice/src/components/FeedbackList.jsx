@@ -4,13 +4,15 @@ import FeedbackItem from "./FeedbackItem";
 import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackList() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedback, isLoading } = useContext(FeedbackContext);
   // use value prop that is being returned in context component
 
-  if (!feedback || feedback.length === 0) {
+  // if not loading and no feedback or the legnth is zero - show "no feedback"
+  if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p>no feedback left</p>;
   }
-  return (
+
+  return isLoading ? <h3>Loading...</h3> : (
     <div className="feedback-list">
       <AnimatePresence>
         {feedback.map((item) => (

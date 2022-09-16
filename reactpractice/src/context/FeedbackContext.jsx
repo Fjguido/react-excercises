@@ -5,6 +5,8 @@ const FeedbackContext = createContext();
 
 // now create a provider
 export const FeedbackProvider = ({ children }) => {
+
+  //set true by default then when the output loads its false
   const [isLoading, setIsloading] = useState(true)
   const [feedback, setFeedback] = useState([]);
 
