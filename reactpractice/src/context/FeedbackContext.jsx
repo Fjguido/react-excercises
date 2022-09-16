@@ -31,26 +31,29 @@ export const FeedbackProvider = ({ children }) => {
 
   // add feedback
   const addFeedback = async (newFeedback) => {
-    const response = await fetch(`http://localhost:3001/feedback?_sort=id&_order=desc`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newFeedback),
-    });
+    const response = await fetch(
+      `http://localhost:3001/feedback?_sort=id&_order=desc`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newFeedback),
+      }
+    );
 
     const data = await response.json();
 
     setFeedback([data, ...feedback]);
   };
 
-  //delete feedback
+  //delete feedback - dont need response to await b/c youre just deleting
   const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
+      await fetch(`http://localhost:3001/feedback/${id}`, 
+      { method: "DELETE" });
 
-    await fetch(`http://localhost:3001/feedback/${id}`, { method: 'DELETE' })
-
-      setFeedback(feedback.filter((item) => item.id !== id))
+      setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
 
@@ -60,10 +63,22 @@ export const FeedbackProvider = ({ children }) => {
   // to the id we want to update, if so we want to spread across the current
   // item and spread across the updated item, else if it doesnt match id
   // just return item.
-  const updateFeedback = (id, updateItem) => {
+  const updateFeedback = async (id, updateItem) => {
+    const response = await fetch(`http://localhost:3001/feedback/${id}`, 
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type' : 'application/json',
+      },
+      body: JSON.stringify(updateItem)
+    })
+
+    const data = await response.json();
+
+// changed the last spread operator to match the data you want the response to be 'data'
     setFeedback(
       feedback.map((item) =>
-        item.id === id ? { ...item, ...updateItem } : item
+        item.id === id ? { ...item, ...data } : item
       )
     );
   };
