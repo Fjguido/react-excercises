@@ -45,9 +45,12 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   //delete feedback
-  const deleteFeedback = (id) => {
+  const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      setFeedback(feedback.filter((item) => item.id !== id));
+
+    await fetch(`http://localhost:3001/feedback/${id}`, { method: 'DELETE' })
+
+      setFeedback(feedback.filter((item) => item.id !== id))
     }
   };
 
